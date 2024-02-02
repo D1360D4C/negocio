@@ -1,0 +1,46 @@
+body {
+  margin: 0; /* Elimina los márgenes por defecto del body */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh; /* Ajusta la altura para centrar verticalmente en la pantalla */
+  background-color: #080802; 
+}
+
+.botones-container {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+ 
+  color: white;
+  font-size: 30px;
+  font-weight: bold; 
+  height: 180px;
+  width: 180px;
+  padding: 10px 10px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+#boton-cargar {
+  background-color: #3427eb;
+}
+#boton-modificar {
+  background-color: #d6c915; 
+}
+#boton-consultar {
+  background-color: #2ee60a; 
+}
+#boton-eliminar {
+  background-color: #f50505; 
+}
+#camera-preview {
+    width: 100%;
+    height: auto;
+  }
