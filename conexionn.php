@@ -22,6 +22,9 @@ function bifur($conexion){
     if(isset($_POST['borrar'])){
         borrar($conexion);
     }
+    if(isset($_POST['consultar1'])){
+        consultar($conexion);
+    }
 }
 function insertar($conexio){
     $nombre = $_POST['nom'];
@@ -43,6 +46,49 @@ function borrar($conexion){
     mysqli_query($conexion,$consulta);
     mysqli_close($conexion);
     mostrar();
+}
+
+function consultar($conexion){
+    $cod1 = $_POST['codi']; 
+    $conex = new mysqli('localhost','root','','prueba');
+    $sql = "SELECT nombre, marca, precio FROM productos WHERE codigo='$cod1'";
+    $result = $conex->query($sql);
+
+    // Verifica si hay resultados
+    if ($result->num_rows > 0) {
+        // MUESTRA los datos en una tabla con estilos CSS
+        echo "<style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+    
+                th, td {
+                    padding: 12px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                }
+    
+                th {
+                    background-color: #f2f2f2;
+                }
+              </style>";
+    
+        echo "<table>";
+        echo "<tr><th>Nombre</th><th>Marca</th><th>Precio</th></tr>";
+    
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>" . $row["nombre"] . "</td>
+                    <td>" . $row["marca"] . "</td>
+                    <td>" . $row["precio"] . "</td>
+                  </tr>";
+        }
+    
+        echo "</table>";
+    } else {
+        echo "No se encontraron usuarios.";
+    }
 }
 
 function mostrar(){
