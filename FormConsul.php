@@ -1,4 +1,5 @@
 <?php include('conexionn.php'); 
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
             </form>
         </div>
     </div>
-
+    
     <button onclick="startScanning()">Escanear Código de Barras</button>
     
     <script language="javascript" type="text/javascript" src="jsc.js"></script>

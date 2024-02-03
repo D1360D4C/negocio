@@ -8,6 +8,8 @@
 <a href="index.html"><button>Home</button></a>
 <a href="FormAlta.php"><button>Nuevo Producto</button></a>
 <a href="FormBaja.php"><button>Eliminar Producto</button></a>
+<a href="FormConsul.php"><button>Consultar Precio</button></a>
+<a href="FormMod.php"><button>Modificar Precio</button></a>
 
 <?php
 include_once("cn.php");      
@@ -24,6 +26,9 @@ function bifur($conexion){
     }
     if(isset($_POST['consultar1'])){
         consultar($conexion);
+    }
+    if(isset($_POST['modif'])){
+        modificar($conexion);
     }
 }
 function insertar($conexio){
@@ -43,6 +48,17 @@ function insertar($conexio){
 function borrar($conexion){
     $cod = $_POST['codi']; 
     $consulta = "DELETE FROM productos WHERE codigo='$cod'";
+    mysqli_query($conexion,$consulta);
+    mysqli_close($conexion);
+    mostrar();
+}
+
+function modificar($conexion){
+    $cod = $_POST['codi']; 
+    $precio2 = $_POST['precio2']; 
+    //UPDATE nombre_tabla SET precio = nuevo_valor WHERE codigo = 'x';
+
+    $consulta = "UPDATE productos SET precio = '$precio2' WHERE codigo='$cod'";
     mysqli_query($conexion,$consulta);
     mysqli_close($conexion);
     mostrar();
