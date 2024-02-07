@@ -21,7 +21,7 @@ button {
   font-size: 30px;
   font-weight: bold; 
   height: 180px;
-  width: 180px;
+  width: 150px;
   padding: 10px 10px;
   border: none;
   border-radius: 5px;
@@ -40,7 +40,9 @@ button {
 #boton-eliminar {
   background-color: #f50505; 
 }
+
+
 #camera-preview {
     width: 100%;
-    height: auto;
+    height: 30%;
   }

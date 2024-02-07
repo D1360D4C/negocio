@@ -1,0 +1,73 @@
+
+.container {
+    text-align: center;
+  }
+  
+  .container a {
+    display: inline-block;
+    margin: 2px;
+  }
+  
+  .container button {
+    padding: 5px 5px;
+    font-size: 18px;
+    width: 180px;
+    color: #ffffff; 
+    font-weight: bold;
+  }
+  
+  
+  .container a:nth-child(1) button {
+    background-color: #3358ff; 
+
+  }
+  
+  .container a:nth-child(2) button {
+    background-color:  #c3c919a9;
+  }
+  
+  .container a:nth-child(3) button {
+    background-color: #1b9421; 
+  }
+  
+  .container a:nth-child(4) button {
+    background-color: #ff3333;
+  }
+
+  .altaform {
+    text-align: center; /* Centrar el formulario */
+    margin-top: 50px; /* Espacio superior */
+  }
+  form {
+    display: inline-block;
+    background-color: #042a7c; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  input[type="text"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #27ae60; /* Borde verde */
+    font-weight: bold; /* Texto en negrita */
+  }
+  
+  input[type="text"]::placeholder {
+    color: #c0392b; /* Color de letra roja */
+  }
+  
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #27ae60; /* Fondo verde */
+    color: #ffffff; /* Texto blanco */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #1e8449; /* Cambio de color al pasar el ratón */
+  }

@@ -13,17 +13,15 @@
     <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
     
     <div class="formulario">
-    <div class= "borrar">
+    <div class= "altaform">
             <form action="conexionn.php" method="post" id="borrar">
                 <input type="text" name="nombre1" placeholder="Nombre">
                 <input type="text" name="codi" id="barcode-input" placeholder="Código de Barras">
                 <button type="submit" name="borrar">Borrar</button>
-
             </form>
+            <button onclick="startScanning(2)">Escanear Código de Barras</button>
         </div>
     </div>
-
-    <button onclick="startScanning()">Escanear Código de Barras</button>
     
     <script language="javascript" type="text/javascript" src="jsc.js"></script>
 </body>

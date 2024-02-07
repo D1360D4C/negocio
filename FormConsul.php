@@ -14,18 +14,24 @@
     <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
     
     <div class="formulario">
-    <div class= "consultar">
-            <form action="conexionn.php" method="post" id="consultar">
-                
-                <input type="text" name="codi" id="barcode-input" placeholder="Código de Barras">
-                <button type="submit" name="consultar1">Consultar</button>
-
+    <div class= "altaform">
+            <form action="conexionn.php?form_id=myForm"  method="post" id="myForm">  
+                <input type="text" name="codigo_barras" id="barcode-input" placeholder="Código de Barras">
+                <input type="submit" value="Consultar" >
             </form>
+            <button onclick="startScanning(1)">Escanear Código de Barras</button>
         </div>
     </div>
     
-    <button onclick="startScanning()">Escanear Código de Barras</button>
+    
     
     <script language="javascript" type="text/javascript" src="jsc.js"></script>
+    <script>
+     //document.addEventListener('DOMContentLoaded', startScanning);
+    document.addEventListener('DOMContentLoaded', function() {
+  startScanning(1);
+});
+
+    </script>
 </body>
 </html>

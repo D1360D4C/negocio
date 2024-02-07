@@ -1,4 +1,5 @@
-async function startScanning() {
+async function startScanning(parametro) {
+  
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
 
@@ -27,28 +28,28 @@ async function startScanning() {
         Quagga.start();
       });
 
-      // Escuchar eventos de detección de código de barras
       Quagga.onDetected(function (data) {
         const barcode = data.codeResult.code;
         document.getElementById('barcode-input').value = barcode;
-
-        // Detener Quagga después de encontrar un código de barras
+        playBeepSound();
         Quagga.stop();
-
-        // Detener la transmisión de la cámara
         const tracks = stream.getTracks();
         tracks.forEach(track => track.stop());
-
-        // Eliminar la vista previa de la cámara
+        if(parametro == 1){
+        document.getElementById('myForm').submit();
+        }
         document.body.removeChild(cameraPreview);
+        
       });
     } catch (error) {
       console.error('Error al acceder a la cámara:', error);
     }
   }
 
-  function cerrarPagina() {
-    window.open('', '_self', '');  // Abre una página en blanco en la misma ventana
-    window.close();  // Cierra la página actual
-    console.error('Error al acceder a la cámara:', error);
+  function playBeepSound() {
+    let beepAudio = new Audio('beep4.mp3'); 
+    beepAudio.play();
   }
+
+
+  

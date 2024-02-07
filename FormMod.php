@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
     
     <div class="formulario">
-    <div class= "modificar">
+    <div class= "altaform">
             <form action="conexionn.php" method="post" id="modificar">
                 
                 <input type="text" name="codi" id="barcode-input" placeholder="Código de Barras">
@@ -21,10 +21,12 @@
                 <button type="submit" name="modif">Listo</button>
 
             </form>
+            <a href="Mlinfeng.html" target="musica">Lin Feng</a>
+            <button onclick="startScanning()">Escanear Código de Barras</button>
         </div>
     </div>
 
-    <button onclick="startScanning()">Escanear Código de Barras</button>
+    
     
     <script language="javascript" type="text/javascript" src="jsc.js"></script>
 </body>
