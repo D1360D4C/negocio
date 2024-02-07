@@ -58,10 +58,10 @@
   }
   
   button[type="submit"] {
-    display: block;
-    width: 100%;
+    display: inline-block;
+    width: 100px;
     padding: 10px;
-    border: none;
+    margin-bottom: 10px;
     background-color: #27ae60; /* Fondo verde */
     color: #ffffff; /* Texto blanco */
     font-weight: bold; /* Texto en negrita */
@@ -70,4 +70,14 @@
   
   button[type="submit"]:hover {
     background-color: #1e8449; /* Cambio de color al pasar el ratón */
+  }
+
+  .puta{
+    width: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #27ae60; /* Fondo verde */
+    color: #ffffff; /* Texto blanco */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer;
   }
