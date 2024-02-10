@@ -22,11 +22,9 @@
 
             </form>
             <a href="Mlinfeng.html" target="musica">Lin Feng</a>
-            <button onclick="startScanning()">Escanear Código de Barras</button>
+            <button onclick="startScanning(2)">Escanear Código de Barras</button>
         </div>
     </div>
-
-    
     
     <script language="javascript" type="text/javascript" src="jsc.js"></script>
 </body>

@@ -13,15 +13,25 @@
     <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
     
     <div class="altaform">
-        <form action="conexionn.php" method="post" id="env">
-            <input type="text" name="nom" placeholder="Nombre">
-            <input type="text" name="mar" placeholder="Marca">
-            <input type="text" name="pre" placeholder="Precio" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        
+        <form class="otro" action="conexionn.php" method="post" id="env">
+            <select name="categoria">
+            <option value="almacen">Almacen</option>
+            <option value="bebida">Bebida</option>
+            <option value="galletita">Galletita</option>
+            <option value="cigarrillo">Cigarrillo</option>
+            <option value="golosina">Golosina</option>
+            <option value="limpieza">Limpieza</option>
+            
+            </select>
+            <input type="text" id="campo1" name="nom" placeholder="Nombre">
+            <input type="text" id="campo2" name="mar" placeholder="Marca">
+            <input type="text" id="campo3" name="pre" placeholder="Precio" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
             
             <input type="text" name="cod" id="barcode-input" placeholder="Código de Barras">
-            <td><button type="submit" name="guardar">Guardar</button><button class="puta" onclick="startScanning(2)">Escanear</button></td>
+            <td><button type="submit" class="boton-des" id="miBoton" name="guardar" disabled>Listo</button> </td>
         </form>
-        
+        <button class="botonE" onclick="startScanning(2)">Escanear otra vez</button>
     
     </div>
 

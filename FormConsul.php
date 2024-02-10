@@ -15,11 +15,12 @@
     
     <div class="formulario">
     <div class= "altaform">
-            <form action="conexionn.php?form_id=myForm"  method="post" id="myForm">  
+            <form action="conexionn.php?form_id=myForm"  method="post" id="myFormConsulta">  
                 <input type="text" name="codigo_barras" id="barcode-input" placeholder="Código de Barras">
-                <input type="submit" value="Consultar" >
+                
+                <button class="boton-ac" onclick="startScanning(1)">Escanear</button>
             </form>
-            <button onclick="startScanning(1)">Escanear Código de Barras</button>
+            
         </div>
     </div>
     
