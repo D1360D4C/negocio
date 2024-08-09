@@ -10,8 +10,8 @@
     <title>Escaneo de Código de Barras</title>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
-    
+   <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
+   
     <div class="altaform">
         
         <form class="otro" action="conexionn.php" method="post" id="env">

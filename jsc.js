@@ -1,5 +1,5 @@
 async function startScanning(parametro) {
-  //toggleFlash();
+  
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
 
@@ -18,7 +18,13 @@ async function startScanning(parametro) {
           target: cameraPreview
         },
         decoder: {
-          readers: ['code_128_reader', 'ean_reader']
+          readers: ['upc_reader', 'code_128_reader', 'ean_reader', 'code_39_reader'] // Agrega otros tipos de códigos de barras si es necesario
+        },
+        locate: true,
+        numOfWorkers: 4,
+        locator: {
+          halfSample: true,
+          patchSize: 'medium' // Puedes ajustar el tamaño del parche según tu escenario
         }
       }, function (err) {
         if (err) {
@@ -55,29 +61,4 @@ async function startScanning(parametro) {
   function playsape() {
     let beepAudio = new Audio('sape.mp3'); 
     beepAudio.play();
-  }
-
-  
-  async function toggleFlash() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-      const track = stream.getVideoTracks()[0];
-  
-      if (!('capabilities' in track) || !track.capabilities.torch) {
-        alert('El flash no es compatible en este dispositivo o navegador.');
-        return;
-      }
-  
-      // Verificar si el flash está encendido o apagado y cambiar su estado
-      if (track.getSettings().torch === true) {
-        await track.applyConstraints({ advanced: [{ torch: false }] });
-        alert('Flash apagado.');
-      } else {
-        await track.applyConstraints({ advanced: [{ torch: true }] });
-        alert('Flash encendido.');
-      }
-    } catch (error) {
-      console.error('Error al acceder a la cámara:', error);
-      alert('Error al acceder a la cámara. Por favor, asegúrate de conceder los permisos necesarios.');
-    }
   }

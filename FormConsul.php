@@ -13,16 +13,16 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/quagga@latest/dist/quagga.min.js"></script>
     
-    <div class="formulario">
+    
     <div class= "altaform">
-            <form action="conexionn.php?form_id=myForm"  method="post" id="myFormConsulta">  
+            <form class= "otro" action="conexionn.php?form_id=myForm"  method="post" id="myFormConsulta">  
                 <input type="text" name="codigo_barras" id="barcode-input" placeholder="Código de Barras">
                 
-                <button class="boton-ac" onclick="startScanning(1)">Escanear</button>
+                <button class="boton-ac" onclick="startScanning(1)">Escaner</button>
             </form>
             
         </div>
-    </div>
+    
     
     
     

@@ -4,41 +4,42 @@
     <link rel="stylesheet" type="text/css" href="style2.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document </title>
+    <title>Principal</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
-    <a class="letra" href="index.html">Almacén BYA</a>
+    <a class="letra" href="principal.php">Almacén BYA</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
-    <form  action="conexionn.php" method="post" id= "cat">
+
+    <form  action="principal.php" method="post" id= "cat">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 500px;">
         <li>
-            <button type="submit" name="almacen" class="ww">Almacen</button>
+            <button type="submit" name="Almacen" class="ww">Almacen</button>
         </li>
         <li>
-            <button type="submit" name="bebidas" class="ww" >Bebibas</button>
+            <button type="submit" name="Bebidas" class="ww" >Bebibas</button>
         </li>
         <li>
-            <button type="submit" name="galletitas" class="ww" >Galletitas</button>
+            <button type="submit" name="Galletitas" class="ww" >Galletitas</button>
         </li>
         <li>
-            <button type="submit" name="cigarrillos" class="ww" >Cigarrillos</button>   
+            <button type="submit" name="Cigarrillos" class="ww" >Cigarrillos</button>   
         </li>
         <li>
-            <button type="submit" name="golosinas" class="ww" >Golosinas</button>
+            <button type="submit" name="Golosinas" class="ww" >Golosinas</button>
         </li>
         <li>
-            <button type="submit" name="limpieza" class="ww" >Limpieza</button>
+            <button type="submit" name="Limpieza" class="ww" >Limpieza</button>
         </li>
         </form>
       </ul>
       <div class="costado">
-        <form action="conexionn.php" method="post" id= "buscar" class="d-flex" role="search">
+        <form action="principal.php" method="post" id= "buscar" class="d-flex" role="search">
           <input class= "ww" type="text" name="nombreBusca" placeholder="Nombre producto">
           <button class="ww" type="submit" name="buss" >Buscar</button>
         </form>
@@ -48,104 +49,43 @@
 </nav>
 
 <?php
-include_once("cn.php");      
+include_once("connection.php");      
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    if (isset($_GET['form_id']) && $_GET['form_id'] == 'myForm') {
-        $tipo = "barras";
-        consultar($conexion,$tipo);
-    }
 
-    if(isset($_POST['almacen']) || isset($_POST['bebidas']) || isset($_POST['galletitas']) || isset($_POST['cigarrillos']) || isset($_POST['golosinas'])){
+    if(isset($_POST['Almacen']) || isset($_POST['Bebidas']) || isset($_POST['Limpieza']) || isset($_POST['Galletitas']) || isset($_POST['Cigarrillos']) || isset($_POST['Golosinas'])){
     
-      if(isset($_POST['almacen'])) {
-        $tipo = "almacen";
-    } elseif(isset($_POST['bebidas'])) {
-        $tipo = "bebida";
-    } elseif(isset($_POST['galletitas'])) {
-        $tipo = "galletita";
-    } elseif(isset($_POST['cigarrillos'])) {
-        $tipo = "cigarrillo";
-    } elseif(isset($_POST['golosinas'])) {
-        $tipo = "golosina";
-    }elseif(isset($_POST['limpieza'])) {
-      $tipo = "limpieza";
-  }
-      consultar($conexion, $tipo);
+      if(isset($_POST['Almacen'])) {
+        $tipo = "Almacen";
+    } elseif(isset($_POST['Bebidas'])) {
+        $tipo = "Bebidas";
+    } elseif(isset($_POST['Galletitas'])) {
+        $tipo = "Galletitas";
+    } elseif(isset($_POST['Cigarrillos'])) {
+        $tipo = "Cigarrillos";
+    } elseif(isset($_POST['Golosinas'])) {
+        $tipo = "Golosinas";
+    }elseif(isset($_POST['Limpieza'])) {
+      $tipo = "Limpieza";
+    }
+      consultar($conn, $tipo);
     }
     
     if(isset($_POST['buss'])){
       $tipo = "buscarN";
-      consultar($conexion, $tipo);
+      consultar($conn, $tipo);
     }
 
-    if(isset($_POST['guardar'])){
-        insertar($conexion);
     }
-
-    if(isset($_POST['borrar'])){
-        borrar($conexion);
-    }
-    
-    if(isset($_POST['modif'])){
-        modificar($conexion);
-    }
-}
-function insertar($conexio){
-    $opcion = $_POST['categoria'];
-    $nombre = $_POST['nom'];
-    $marca = $_POST['mar'];
-    $precio = $_POST['pre'];
-    $codigo = $_POST['cod'];
-
-    $consulta = "INSERT INTO productos(categoria,nombre,marca,precio,codigo) VALUES ('$opcion', '$nombre', '$marca', '$precio', '$codigo')";
-
-    mysqli_query($conexio,$consulta);
-    mysqli_close($conexio);
-    echo '<p style="display: inline-block; text-align: left; font-size: 28px; margin-top: 10px; border: 3px solid #0dbe57; border-radius: 8px;">¡Producto Agregado!</p>
-      <a href="FormAlta.php" style="display: inline-block; float: right;">
-        <button style="font-weight: bold; 
-                      height: 50px;
-                      color: #ffffff;
-                      background-color: #042a7c;
-                      margin-top: 10px;
-                      margin-right: 10px;">Nuevo Producto</button>
-      </a>';
-
-    
-    mostrar();
-}
-
-function borrar($conexion){
-    $cod = $_POST['codi']; 
-    $consulta = "DELETE FROM productos WHERE codigo='$cod'";
-    mysqli_query($conexion,$consulta);
-    mysqli_close($conexion);
-    mostrar();
-}
-
-function modificar($conexion){
-    $cod = $_POST['codi']; 
-    $precio2 = $_POST['precio2']; 
-    $consulta = "UPDATE productos SET precio = '$precio2' WHERE codigo='$cod'";
-    mysqli_query($conexion,$consulta);
-    mysqli_close($conexion);
-    mostrar();
-}
 
 function consultar($conexion, $tipo){
-  if($tipo == "barras"){
-    $cod1 = $_POST['codigo_barras']; 
-    $sql = "SELECT nombre, marca, precio FROM productos WHERE codigo='$cod1'";
-    $result = $conexion->query($sql);
-  }
-  else if($tipo == "buscarN"){
+ 
+  if($tipo == "buscarN"){
     $nomB = $_POST['nombreBusca']; 
     $sql = "SELECT nombre, marca, precio FROM productos WHERE nombre='$nomB'";
     $result = $conexion->query($sql);
   }
-  else if($tipo == "almacen" || $tipo == "galletita" || $tipo == "bebida" || $tipo == "cigarrillo" || $tipo == "golosina" || $tipo == "limpieza"){
+  else if($tipo == "Almacen" || $tipo == "Galletitas" || $tipo == "Bebidas" || $tipo == "Cigarrillos" || $tipo == "Golosinas" || $tipo == "Limpieza"){
     $sql = "SELECT nombre, marca, precio FROM productos WHERE categoria='$tipo'";
     $result = $conexion->query($sql);
   }
@@ -187,8 +127,12 @@ function consultar($conexion, $tipo){
 }
 
 function mostrar(){
-    
-    $conex = new mysqli('localhost','root','','prueba');
+    $servername = "localhost";
+    $dBUsername = "id20779728_diegocallamullo";
+    $dBPassword = "E5p32arduino$";
+    $dBName = "id20779728_esp32";
+
+    $conex = new mysqli($servername, $dBUsername, $dBPassword, $dBName);
     $sql = "SELECT nombre, marca, precio FROM productos";
     $result = $conex->query($sql);
 
@@ -234,7 +178,6 @@ function mostrar(){
 }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script language="javascript" type="text/javascript" src="jsc.js"></script>
 
 </body>
 </html>

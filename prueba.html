@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector de códigos de barras</title>
+    <script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.18.4"></script>
+</head>
+<body>
+    <h1>Lector de códigos de barras</h1>
+    <video id="barcode-scanner" width="300" height="200" style="border: 1px solid gray"></video>
+    <div id="result"></div>
+    <button id="toggle-camera">Cambiar cámara</button>
+
+    <script>
+        // Obtener el elemento de video y el resultado
+        const videoElement = document.getElementById('barcode-scanner');
+        const resultElement = document.getElementById('result');
+        const toggleCameraButton = document.getElementById('toggle-camera');
+
+        let currentCameraIndex = 0; // Índice de la cámara actual
+
+        // Función para cambiar entre cámaras
+        toggleCameraButton.addEventListener('click', function() {
+            currentCameraIndex = (currentCameraIndex + 1) % 2; // Cambiar entre 0 y 1
+            startCamera(currentCameraIndex);
+        });
+
+        // Función para iniciar la cámara
+        function startCamera(cameraIndex) {
+            // Configurar las opciones para obtener la cámara seleccionada
+            const constraints = {
+                video: {
+                    deviceId: { exact: cameraIndex }
+                }
+            };
+
+            // Detener la corriente de video actual si existe
+            if (videoElement.srcObject) {
+                videoElement.srcObject.getTracks().forEach(track => track.stop());
+            }
+
+            // Obtener la nueva corriente de video
+            navigator.mediaDevices.getUserMedia({ video: constraints }).then(function(stream) {
+                videoElement.srcObject = stream;
+                videoElement.play();
+            }).catch(function(error) {
+                console.error('Error al obtener la cámara:', error);
+            });
+        }
+
+        // Iniciar con la cámara predeterminada
+        startCamera(currentCameraIndex);
+
+        // Crear un lector de códigos de barras
+        const codeReader = new ZXing.BrowserBarcodeReader();
+
+        // Configurar la función de detección de códigos de barras
+        codeReader.decodeFromVideoDevice(undefined, 'barcode-scanner', (result, error) => {
+            if (result) {
+                resultElement.textContent = result.text;
+            }
+            if (error) {
+                console.error(error);
+            }
+        }, { tryHarder: true }); // Esto activa un modo más exhaustivo para la detección de códigos
+    </script>
+</body>
+</html>

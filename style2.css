@@ -37,7 +37,7 @@
   .altaform {
     text-align:center; /* Centrar el formulario */
     margin-top: 20px; /* Espacio superior */
-   
+    
   }
   .altaform button {
     display: block; /* Hace que los elementos se ubiquen uno debajo del otro */
@@ -118,7 +118,7 @@
   width: 200px;
   padding: 0px;
   font-size: 28px;
-  margin-right: 220px;
+  margin-right: 100px;
   font-family: 'Arial Narrow Bold', sans-serif;
   color: #ffffff;
   font-weight: bold; 
@@ -137,6 +137,10 @@
   text-decoration: none;
   border-radius: 10px;
   border: 2px solid #0dbe57;
+}
+#camera-preview {
+  width: 100%;
+  height: auto;
 }
 
 
